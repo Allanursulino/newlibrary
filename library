@@ -1,7 +1,7 @@
 --[[
     		MultiHub Interface
 
-    Author: 4lpaca
+    Author: Alan
     License: MIT
     Github: https://github.com/4lpaca-pin/MultiHub
     Original: multihub.net
@@ -10275,7 +10275,7 @@ function MultiHub:ConfigManager(ConfigManager: ConfigManager) : ConfigFunctions
 end;
 
 function MultiHub:Loader(IconId,Duration)
-	local MultiHub = Instance.new("ScreenGui")
+	local LoaderGui = Instance.new("ScreenGui")
 
 	MultiHub.Name = MultiHub:_RandomString()
 	MultiHub.Parent = CoreGui
