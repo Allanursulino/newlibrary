@@ -10275,21 +10275,21 @@ function MultiHub:ConfigManager(ConfigManager: ConfigManager) : ConfigFunctions
 end;
 
 function MultiHub:Loader(IconId,Duration)
-	local LoaderGui = Instance.new("ScreenGui")
+	local MH = Instance.new("ScreenGui")
 
-    LoaderGui.Name = MultiHub:_RandomString()
-    LoaderGui.Parent = CoreGui
-    LoaderGui.Enabled = true
-    LoaderGui.ResetOnSpawn = false
-    LoaderGui.IgnoreGuiInset = true
-    LoaderGui.ZIndexBehavior = Enum.ZIndexBehavior.Global
+    MH.Name = MultiHub:_RandomString()
+    MH.Parent = CoreGui
+    MH.Enabled = true
+    MH.ResetOnSpawn = false
+    MH.IgnoreGuiInset = true
+    MH.ZIndexBehavior = Enum.ZIndexBehavior.Global
 
 	local Loader = Instance.new("Frame")
 	local Icon = Instance.new("ImageLabel")
 	local Vignette = Instance.new("ImageLabel")
 
 	Loader.Name = MultiHub:_RandomString()
-	Loader.Parent = LoaderGui
+	Loader.Parent = MH
 	Loader.AnchorPoint = Vector2.new(0.5, 0.5)
 	Loader.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 	Loader.BackgroundTransparency = 1
