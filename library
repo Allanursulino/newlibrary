@@ -10634,8 +10634,6 @@ end;
 
 MultiHub.NilFolder.Name = "Nil-Instances";
 
-return MultiHub;
-
 -- Botão Flutuante MultiHub
 function MultiHub:CreateToggleButton(WindowFrame)
     local ScreenGui = Instance.new("ScreenGui")
@@ -10663,3 +10661,5 @@ function MultiHub:CreateToggleButton(WindowFrame)
         end
     end)
 end
+
+return MultiHub;
