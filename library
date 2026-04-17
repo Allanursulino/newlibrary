@@ -10277,19 +10277,19 @@ end;
 function MultiHub:Loader(IconId,Duration)
 	local LoaderGui = Instance.new("ScreenGui")
 
-	MultiHub.Name = MultiHub:_RandomString()
-	MultiHub.Parent = CoreGui
-	MultiHub.Enabled = true
-	MultiHub.ResetOnSpawn = false
-	MultiHub.IgnoreGuiInset = true
-	MultiHub.ZIndexBehavior = Enum.ZIndexBehavior.Global
+    LoaderGui.Name = MultiHub:_RandomString()
+    LoaderGui.Parent = CoreGui
+    LoaderGui.Enabled = true
+    LoaderGui.ResetOnSpawn = false
+    LoaderGui.IgnoreGuiInset = true
+    LoaderGui.ZIndexBehavior = Enum.ZIndexBehavior.Global
 
 	local Loader = Instance.new("Frame")
 	local Icon = Instance.new("ImageLabel")
 	local Vignette = Instance.new("ImageLabel")
 
 	Loader.Name = MultiHub:_RandomString()
-	Loader.Parent = MultiHub
+	Loader.Parent = Loader
 	Loader.AnchorPoint = Vector2.new(0.5, 0.5)
 	Loader.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 	Loader.BackgroundTransparency = 1
