@@ -10275,7 +10275,7 @@ function MultiHub:ConfigManager(ConfigManager: ConfigManager) : ConfigFunctions
 end;
 
 function MultiHub:Loader(IconId,Duration)
-	local MultiHub = Instance.new("ScreenGui")
+	local Multi = Instance.new("ScreenGui")
 
 	MultiHub.Name = MultiHub:_RandomString()
 	MultiHub.Parent = CoreGui
@@ -10289,7 +10289,7 @@ function MultiHub:Loader(IconId,Duration)
 	local Vignette = Instance.new("ImageLabel")
 
 	Loader.Name = MultiHub:_RandomString()
-	Loader.Parent = MultiHub
+	Loader.Parent = Multi
 	Loader.AnchorPoint = Vector2.new(0.5, 0.5)
 	Loader.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 	Loader.BackgroundTransparency = 1
