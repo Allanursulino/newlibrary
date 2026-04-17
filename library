@@ -1,10 +1,10 @@
 --[[
     		MultiHub Interface
 
-    Author: Alan
+    Author: 4lpaca
     License: MIT
     Github: https://github.com/4lpaca-pin/MultiHub
-    Original: MultiHub.net
+    Original: multihub.net
 
         Version: 3.0
     - Improved Performance Mode
@@ -356,8 +356,8 @@ local Mouse: Mouse = LocalPlayer:GetMouse();
 local CurrentCamera: Camera? = cloneref(workspace.CurrentCamera);
 
 local MultiHub = {
-	Version = '2.6',
-	Logo = "rbxassetid://120245531583106",
+	Version = '3.0',
+	Logo = "rbxassetid://90012208401076",
 	Windows = {},
 	Scale = {
 		Window = UDim2.new(0, 485,0, 565),
@@ -373,18 +373,18 @@ local MultiHub = {
 };
 
 MultiHub.Colors = {
-	Highlight = Color3.fromRGB(255, 40, 40), -- Destaque Vermelho
-	Toggle = Color3.fromRGB(255, 40, 40), -- Toggle Vermelho
-	Risky = Color3.fromRGB(255, 255, 39),
-	BGDBColor = Color3.fromRGB(22, 10, 10), -- Fundos com tom avermelhado escuro
-	BlockColor = Color3.fromRGB(28, 15, 15),
-	StrokeColor = Color3.fromRGB(45, 25, 25),
+	Highlight = Color3.fromRGB(17, 238, 253),
+	Toggle = Color3.fromRGB(14, 203, 213),
+	Risky = Color3.fromRGB(251, 255, 39),
+	BGDBColor = Color3.fromRGB(22, 24, 29),
+	BlockColor = Color3.fromRGB(28, 29, 34),
+	StrokeColor = Color3.fromRGB(37, 38, 43),
 	SwitchColor = Color3.fromRGB(255, 255, 255),
-	DropColor = Color3.fromRGB(39, 20, 20),
-	MouseEnter = Color3.fromRGB(65, 30, 30),
-	BlockBackground = Color3.fromRGB(30, 15, 15),
-	LineColor = Color3.fromRGB(80, 30, 30),
-	HighStrokeColor = Color3.fromRGB(65, 25, 25),
+	DropColor = Color3.fromRGB(33, 35, 39),
+	MouseEnter = Color3.fromRGB(55, 58, 65),
+	BlockBackground = Color3.fromRGB(39, 40, 47),
+	LineColor = Color3.fromRGB(65, 65, 65),
+	HighStrokeColor = Color3.fromRGB(55, 56, 63),
 };
 
 MultiHub.Elements = {
@@ -6313,7 +6313,7 @@ function MultiHub.new(Config : Window)
 	end;
 
 	Config = MultiHub.__CONFIG(Config , {
-		Name = "MultiHub",
+		Name = "MULTIHUB",
 		Keybind = "Insert",
 		Logo = MultiHub.Logo;
 		Scale = MultiHub.Scale.Window,
@@ -6365,7 +6365,7 @@ function MultiHub.new(Config : Window)
 		TabButtonScrollingFrame.CanvasSize = UDim2.fromOffset(0,UIListLayout.AbsoluteContentSize.Y)
 	end);
 
-	MultiHub.Name = "u?name=MultiHub_?"..MultiHub:_RandomString();
+	MultiHub.Name = "u?name=multihub_?"..MultiHub:_RandomString();
 	MultiHub.Parent = CoreGui;
 	MultiHub.ResetOnSpawn = false
 	MultiHub.IgnoreGuiInset = true;
