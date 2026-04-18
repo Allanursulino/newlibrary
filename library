@@ -10634,32 +10634,71 @@ end;
 
 MultiHub.NilFolder.Name = "Nil-Instances";
 
--- Botão Flutuante MultiHub
-function MultiHub:CreateToggleButton(WindowFrame)
-    local ScreenGui = Instance.new("ScreenGui")
-    local ToggleBtn = Instance.new("ImageButton")
-    local UICorner = Instance.new("UICorner")
-
-    ScreenGui.Name = "MultiHubToggle"
-    ScreenGui.Parent = game:GetService("CoreGui")
-    ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
-    ToggleBtn.Parent = ScreenGui
-    ToggleBtn.BackgroundColor3 = Color3.fromRGB(28, 15, 15)
-    ToggleBtn.Position = UDim2.new(0.1, 0, 0.1, 0)
-    ToggleBtn.Size = UDim2.new(0, 45, 0, 45)
-    ToggleBtn.Image = "rbxassetid://90012208401076"
-    ToggleBtn.Active = true
-    ToggleBtn.Draggable = true 
+-- ===== BOTÃO FLUTUANTE (MOBILE & PC) BYPASS LIBRARY =====
+local function CreateFloatingToggle()
+    local sg = Instance.new("ScreenGui")
+    sg.Name = "MultiHubToggle"
+    sg.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     
-    UICorner.CornerRadius = UDim.new(0, 8)
-    UICorner.Parent = ToggleBtn
+    -- Coloca o botão em um lugar seguro visível
+    local success = pcall(function() sg.Parent = game:GetService("CoreGui") end)
+    if not success then sg.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui") end
+    
+    local btn = Instance.new("ImageButton", sg)
+    btn.BackgroundColor3 = Color3.fromRGB(28, 15, 15)
+    btn.Position = UDim2.new(0.1, 0, 0.1, 0)
+    btn.Size = UDim2.new(0, 45, 0, 45)
+    btn.Image = "rbxassetid://90012208401076"
+    btn.Active = true
+    btn.Draggable = true
+    
+    local corner = Instance.new("UICorner", btn)
+    corner.CornerRadius = UDim.new(0, 8)
+    
+    local libraryGui = nil
 
-    ToggleBtn.MouseButton1Click:Connect(function()
-        if WindowFrame then
-            WindowFrame.Visible = not WindowFrame.Visible
+    btn.MouseButton1Click:Connect(function()
+        -- Método 1: Tenta acionar o botão de fechar nativo da variável Window
+        if Window then
+            local toggled = false
+            pcall(function() 
+                if type(Window.Toggle) == "function" then Window:Toggle() toggled = true end
+            end)
+            if toggled then return end
+        end
+
+        -- Se a interface já foi encontrada antes, apenas inverte
+        if libraryGui and libraryGui.Parent then
+            libraryGui.Enabled = not libraryGui.Enabled
+            return
+        end
+
+        -- Método 2 e 3: Usar o gethui() para invadir a memória protegida da Library
+        -- gethui() é a chave mestra dos executores para achar interfaces escondidas
+        local guiRoots = {}
+        if gethui then pcall(function() table.insert(guiRoots, gethui()) end) end
+        table.insert(guiRoots, game:GetService("CoreGui"))
+        table.insert(guiRoots, game:GetService("Players").LocalPlayer:FindFirstChild("PlayerGui"))
+
+        for _, root in ipairs(guiRoots) do
+            if root then
+                for _, gui in pairs(root:GetChildren()) do
+                    if gui:IsA("ScreenGui") and gui.Name ~= "MultiHubToggle" and not string.find(gui.Name, "Roblox") then
+                        -- Encontra o painel pelas medidas ignorando o nome criptografado
+                        for _, child in pairs(gui:GetChildren()) do
+                            if (child:IsA("Frame") or child:IsA("ImageLabel")) and child.AbsoluteSize.X > 250 and child.AbsoluteSize.Y > 200 then
+                                libraryGui = gui
+                                gui.Enabled = not gui.Enabled
+                                return
+                            end
+                        end
+                    end
+                end
+            end
         end
     end)
 end
+
+task.spawn(CreateFloatingToggle)
 
 return MultiHub;
