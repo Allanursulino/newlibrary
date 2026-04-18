@@ -10634,4 +10634,32 @@ end;
 
 MultiHub.NilFolder.Name = "Nil-Instances";
 
+-- Botão Flutuante MultiHub
+function MultiHub:CreateToggleButton(WindowFrame)
+    local ScreenGui = Instance.new("ScreenGui")
+    local ToggleBtn = Instance.new("ImageButton")
+    local UICorner = Instance.new("UICorner")
+
+    ScreenGui.Name = "MultiHubToggle"
+    ScreenGui.Parent = game:GetService("CoreGui")
+    ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+    ToggleBtn.Parent = ScreenGui
+    ToggleBtn.BackgroundColor3 = Color3.fromRGB(28, 15, 15)
+    ToggleBtn.Position = UDim2.new(0.1, 0, 0.1, 0)
+    ToggleBtn.Size = UDim2.new(0, 45, 0, 45)
+    ToggleBtn.Image = "rbxassetid://90012208401076"
+    ToggleBtn.Active = true
+    ToggleBtn.Draggable = true 
+    
+    UICorner.CornerRadius = UDim.new(0, 8)
+    UICorner.Parent = ToggleBtn
+
+    ToggleBtn.MouseButton1Click:Connect(function()
+        if WindowFrame then
+            WindowFrame.Visible = not WindowFrame.Visible
+        end
+    end)
+end
+
 return MultiHub;
